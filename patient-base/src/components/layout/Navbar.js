@@ -5,41 +5,41 @@ import React from 'react'
 * @function Navbar
 **/
 
-const Navbar = (props) => {
+const Navbar = () => {
   return(
     <nav className="navbar navbar-expand-sm navbar-light bg-white">
   <div className="container">
     <a className="navbar-brand" href="/">
-      Brand Name
+      <img src={require("../../assets/sigla.svg")} height="50px" alt="Logo"/>
     </a>
 
     <div>
       <ul className="navbar-nav mr-auto"></ul>
       <ul className="navbar-nav align-items-center">
         <li className="nav-item">
-          <a href="#!" className="btn btn-primary mr-3">
-            Adauga Beneficiar
+          <a href="#" className="btn btn-primary mr-3">
+            Add Patient
           </a>
         </li>
         <li className="nav-item dropdown">
           <a
             className="nav-a dropdown-toggle"
-            href="!#"
+            href="#"
             id="navbarDropdown"
             data-toggle="dropdown"
           >
-            Admin
+            <img src={ require("../../assets/admin.png")} className="rounded-circle" height="40px" alt="admin" />
             <span className="ml-2 navbar-text">Alex Preda</span>
           </a>
           <div className="dropdown-menu">
-            <a className="dropdown-item" href="!#">
+            <a className="dropdown-item" href="#">
               Profile
             </a>
-            <a className="dropdown-item" href="!#">
+            <a className="dropdown-item" href="#">
               Logout
             </a>
             <div className="dropdown-divider"></div>
-            <a className="dropdown-item" href="!#">
+            <a className="dropdown-item" href="#">
               Ads
             </a>
           </div>
