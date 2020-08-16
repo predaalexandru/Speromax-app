@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 
 /**
 * @author
@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 **/
 
 const Student = () => {
+    const {id} = useParams();
   return(
     <div className="container">
         <div className="py-4">
@@ -21,7 +22,7 @@ const Student = () => {
                                 <ul className="list-group">
                                     <li className="d-flex justify-content-between align-items-center list-group-item list-group-item-action">
                                         <h3 className="m-0">Patient NAME</h3>
-                                        <Link className="btn btn-primary" to="/patientForm">
+                                        <Link className="btn btn-primary" to={`/patientForm/${id}`}>
                                             Edit Profile
                                         </Link>
                                     </li>
