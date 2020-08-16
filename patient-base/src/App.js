@@ -14,7 +14,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Patients}/>
           <Route exact path="/patient/:id" component={Patient}/>
-          <Route exact path="/patientForm/:id" component={PatientForm}/>
+          <Route exact path="/patientForm/:id?" component={PatientForm}/>
         </Switch>
       </div>
     </BrowserRouter>

@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import {useParams} from 'react-router-dom'
+import Input from "../layout/Input";
 
 /**
 * @author
@@ -6,75 +8,93 @@ import React from 'react'
 **/
 
 const PatientForm = () => {
+  const {id} = useParams();
+  const [patient, setPatient] = useState({
+    name: "",
+    cnp: "",
+    address: "",
+    phone: "",
+    treatment: "",
+    center_treatment: "",
+  });
+
+  const onInputChange = (e) => {
+    setPatient({...patient, [e.target.name]: e.target.value})
+  }
+
+  const submitForm = (e) => {
+    e.preventDefault();
+
+    if(id) {
+      alert("Update Patient!");
+    } else {
+      alert("Add Patient!");
+    }
+  }
   return(
     <div className="container">
     <div className="py-4">
     <div className="row">
       <div className="col-md-10 mx-auto">
         <div className="card card-body shadow">
-          <form>
+          <form onSubmit={submitForm}>
             <div className="form-row form-group mb-4">
               <div className="col-md-6">
-                <input
-                  type="text"
+                <Input
                   placeholder="Enter Patient Name"
                   name="name"
-                  value=""
-                  className="form-control"
+                  value={patient.name}
+                  onChange={onInputChange}
                 />
               </div>
               <div className="col-md-6">
-                <input
+                <Input
                   placeholder="Enter Patient CNP"
                   name="cnp"
-                  value=""
-                  className="form-control"
+                  value={patient.cnp}
+                  onChange={onInputChange}
                 />
               </div>
             </div>
             <div className="form-row form-group mb-4">
               <div className="col-md-6">
-                <input
-                  type="text"
+                <Input
                   placeholder="Enter Patient Address"
                   name="address"
-                  value=""
-                  className="form-control"
+                  value={patient.address}
+                  onChange={onInputChange}
                 />
               </div>
               <div className="col-md-6">
-                <input
-                  type="text"
-                  placeholder="Enter Student Telephone"
-                  name="telephone"
-                  value=""
-                  className="form-control"
+                <Input
+                  placeholder="Enter Student Phone"
+                  name="phone"
+                  value={patient.phone}
+                  onChange={onInputChange}
                 />
               </div>
             </div>
             <div className="form-row form-group">
               <div className="col-md-6">
-                <input
-                  type="text"
+                <Input
                   placeholder="Enter Patient Treatment"
                   name="treatment"
-                  value=""
-                  className="form-control"
+                  value={patient.treatment}
+                  onChange={onInputChange}
                 />
               </div>
               <div className="col-md-6">
-                <input
-                  type="text"
+                <Input
                   placeholder="Enter Patient Center Treatment"
                   name="center_treatment"
-                  value=""
-                  className="form-control"
+                  value={patient.center_treatment}
+                  onChange={onInputChange}
                 />
               </div>
             </div>
 
             <button type="submit" className="btn btn-primary">
-              Add Patient
+              { id ? "Update Patient" : "Add Patient"}
             </button>
           </form>
         </div>

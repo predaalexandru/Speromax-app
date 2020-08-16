@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 /**
 * @author
@@ -17,9 +18,9 @@ const Navbar = () => {
       <ul className="navbar-nav mr-auto"></ul>
       <ul className="navbar-nav align-items-center">
         <li className="nav-item">
-          <a href="#" className="btn btn-primary mr-3">
+          <Link to="/patientForm" className="btn btn-primary mr-3">
             Add Patient
-          </a>
+          </Link>
         </li>
         <li className="nav-item dropdown">
           <a
