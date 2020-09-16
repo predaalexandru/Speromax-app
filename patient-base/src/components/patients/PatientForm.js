@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, useHistory } from 'react-router-dom'
 import Input from "../layout/Input";
+import { useFirestore } from "react-redux-firebase";
 
 /**
 * @author
@@ -8,15 +9,38 @@ import Input from "../layout/Input";
 **/
 
 const PatientForm = () => {
-  const {id} = useParams();
+  const firestore = useFirestore();
+
+  let history = useHistory();
+  const { id } = useParams();
+  const docRef = id ? firestore.collection("students").doc(id) : null;
   const [patient, setPatient] = useState({
-    name: "",
+    full_name: "",
     cnp: "",
-    address: "",
+    adress: "",
     phone: "",
     treatment: "",
     center_treatment: "",
   });
+
+  useEffect(() => {
+    if (id) {
+      loadStudent();
+    }
+  }, [id]);
+
+  const loadStudent = async () => {
+    try {
+      const result = await docRef.get();
+      if (result.exists) {
+        setPatient(result.data());
+      } else {
+        console.log("No such patient!");
+      }
+    } catch (error) {
+      console.log("Error getting patient:", error);
+    }
+  };
 
   const onInputChange = (e) => {
     setPatient({...patient, [e.target.name]: e.target.value})
@@ -28,9 +52,13 @@ const PatientForm = () => {
     if(id) {
       alert("Update Patient!");
     } else {
-      alert("Add Patient!");
-    }
+      firestore
+      .collection("patients")
+      .add({ ...patient, createdAt: firestore.FieldValue.serverTimestamp() });
   }
+  history.push("/");
+};
+
   return(
     <div className="container">
     <div className="py-4">
@@ -42,8 +70,8 @@ const PatientForm = () => {
               <div className="col-md-6">
                 <Input
                   placeholder="Enter Patient Name"
-                  name="name"
-                  value={patient.name}
+                  name="full_name"
+                  value={patient.full_name}
                   onChange={onInputChange}
                 />
               </div>
@@ -60,16 +88,16 @@ const PatientForm = () => {
               <div className="col-md-6">
                 <Input
                   placeholder="Enter Patient Address"
-                  name="address"
-                  value={patient.address}
+                  name="adress"
+                  value={patient.adress}
                   onChange={onInputChange}
                 />
               </div>
               <div className="col-md-6">
                 <Input
-                  placeholder="Enter Student Phone"
+                  placeholder="Enter Patient Phone"
                   name="phone"
-                  value={patient.phone}
+                  value={patient.telephone}
                   onChange={onInputChange}
                 />
               </div>
