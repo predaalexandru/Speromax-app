@@ -13,7 +13,7 @@ const PatientForm = () => {
 
   let history = useHistory();
   const { id } = useParams();
-  const docRef = id ? firestore.collection("students").doc(id) : null;
+  const docRef = id ? firestore.collection("patients").doc(id) : null;
   const [patient, setPatient] = useState({
     full_name: "",
     cnp: "",
@@ -25,12 +25,13 @@ const PatientForm = () => {
 
   useEffect(() => {
     if (id) {
-      loadStudent();
+      loadPatient();
     }
   }, [id]);
 
-  const loadStudent = async () => {
+  const loadPatient = async () => {
     try {
+      // const docRef = firestore.collection("patients").doc(id);
       const result = await docRef.get();
       if (result.exists) {
         setPatient(result.data());
@@ -46,12 +47,22 @@ const PatientForm = () => {
     setPatient({...patient, [e.target.name]: e.target.value})
   }
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
     if(id) {
-      alert("Update Patient!");
+      // Update student
+      try {
+        await docRef.update({
+          ...patient,
+          updatedAt: firestore.FieldValue.serverTimestamp(),
+        });
+        console.log("Patient successfully updated!");
+      } catch (error) {
+        console.error("Error updating patient: ", error);
+      }
     } else {
+      // add new patient
       firestore
       .collection("patients")
       .add({ ...patient, createdAt: firestore.FieldValue.serverTimestamp() });
@@ -97,7 +108,7 @@ const PatientForm = () => {
                 <Input
                   placeholder="Enter Patient Phone"
                   name="phone"
-                  value={patient.telephone}
+                  value={patient.phone}
                   onChange={onInputChange}
                 />
               </div>

@@ -55,7 +55,7 @@ const Student = () => {
                                         <p>Full Name: {patient.full_name}</p>
                                         <p>CNP: {patient.cnp}</p>
                                         <p>Address: {patient.adress}</p>
-                                        <p>Telephone: {patient.telephone}</p>
+                                        <p>Telephone: {patient.phone}</p>
                                         <p>Treatment: {patient.treatment}</p>
                                         <p>Center Treatment: {patient.center_treatment}</p>
                                     </li>
