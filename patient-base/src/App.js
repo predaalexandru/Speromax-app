@@ -8,6 +8,7 @@ import {BrowserRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store, { rrfProps } from "./store";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import Login from "./components/auth/Login";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/" component={Patients}/>
           <Route exact path="/patient/:id" component={Patient}/>
           <Route exact path="/patientForm/:id?" component={PatientForm}/>
+          <Route exact path="/login" component={Login}/>
         </Switch>
       </div>
     </BrowserRouter>

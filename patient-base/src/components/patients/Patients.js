@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { useFirestore } from "react-redux-firebase";
-import { useFirestoreConnect } from "react-redux-firebase";
+import { useFirestore, useFirestoreConnect } from "react-redux-firebase";
 import { useSelector } from "react-redux";
 
 
