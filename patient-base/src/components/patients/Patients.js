@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { useFirestore, useFirestoreConnect } from "react-redux-firebase";
 import { useSelector } from "react-redux";
+import Loading from "../layout/Loading";
 
 
 /**
@@ -19,7 +20,7 @@ const Patients = () => {
   ]);
 
   if (!patients) {
-    return <h1>Loading.....</h1>;
+    return <Loading />;
   }
 
   const deletePatient = async (id) => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect }  from 'react'
 import {Link, useParams} from 'react-router-dom'
 import { useFirestore } from "react-redux-firebase";
+import Loading from "../layout/Loading";
 
 /**
 * @author
@@ -29,8 +30,8 @@ const Student = () => {
           console.log("Error getting patient:", error);
         }
       };
-      if (patient == null) {
-        return <h1>Loading.....</h1>;
+      if (patient == null) {     
+        return <Loading />;
       }
 
   return(

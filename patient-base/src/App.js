@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import store, { rrfProps } from "./store";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import Login from "./components/auth/Login";
+import PrivateRoute from "./components/routes/PrivateRoute";
+import NotFound from "./components/auth/NotFound";
 
 function App() {
   return (
@@ -16,12 +18,13 @@ function App() {
         <ReactReduxFirebaseProvider {...rrfProps}>
     <BrowserRouter>
       <div className="App">
-        <Navbar />
+      <PrivateRoute component={Navbar} />
         <Switch>
-          <Route exact path="/" component={Patients}/>
-          <Route exact path="/patient/:id" component={Patient}/>
-          <Route exact path="/patientForm/:id?" component={PatientForm}/>
+          <PrivateRoute exact path="/" component={Patients}/>
+          <PrivateRoute exact path="/patient/:id" component={Patient}/>
+          <PrivateRoute exact path="/patientForm/:id?" component={PatientForm}/>
           <Route exact path="/login" component={Login}/>
+          <Route component={NotFound} />
         </Switch>
       </div>
     </BrowserRouter>
