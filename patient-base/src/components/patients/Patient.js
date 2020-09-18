@@ -14,10 +14,10 @@ const Student = () => {
     const [patient, setPatient] = useState(null);
 
     useEffect(() => {
-        loadStudent();
+      loadPatient();
       }, []);
 
-      const loadStudent = async () => {
+      const loadPatient = async () => {
         try {
           const docRef = firestore.collection("patients").doc(id);
           const result = await docRef.get();
@@ -42,7 +42,7 @@ const Student = () => {
                     <div className="card card-body shadow">
                         <div className="row">
                             <div className="col-md-4">
-                                Profile picture
+                            <img src={ require("../../assets/admin.svg")} className="rounded-circle" height="50px" alt="admin" />
                             </div>
                             <div className="col-md-8">
                                 <ul className="list-group">
@@ -53,12 +53,12 @@ const Student = () => {
                                         </Link>
                                     </li>
                                     <li className="list-group-item">
-                                        <p>Full Name: {patient.full_name}</p>
-                                        <p>CNP: {patient.cnp}</p>
-                                        <p>Address: {patient.adress}</p>
-                                        <p>Telephone: {patient.phone}</p>
-                                        <p>Treatment: {patient.treatment}</p>
-                                        <p>Center Treatment: {patient.center_treatment}</p>
+                                        <p><b>Full Name:</b> {patient.full_name}</p>
+                                        <p><b>CNP:</b> {patient.cnp}</p>
+                                        <p><b>Address:</b> {patient.adress}</p>
+                                        <p><b>Telephone:</b> {patient.phone}</p>
+                                        <p><b>Treatment:</b> {patient.treatment}</p>
+                                        <p><b>Center Treatment:</b> {patient.center_treatment}</p>
                                     </li>
                                 </ul>
                             </div>

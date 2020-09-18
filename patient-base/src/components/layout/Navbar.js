@@ -31,8 +31,8 @@ const Navbar = () => {
             id="navbarDropdown"
             data-toggle="dropdown"
           >
-            <img src={ require("../../assets/admin.png")} className="rounded-circle" height="40px" alt="admin" />
-            <span className="ml-2 navbar-text">Alex Preda</span>
+            <img src={ require("../../assets/admin.svg")} className="rounded-circle" height="30px" alt="admin" />
+            <span className="ml-2 navbar-text">Admin</span>
           </a>
           <div className="dropdown-menu">
             <a className="dropdown-item" href="#">

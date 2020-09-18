@@ -39,7 +39,7 @@ const Patients = () => {
                     patients.map((patient, index) => (
                         <div className="col-lg-3 col-md-6 mb-4" key={patient.id}>
                             <div className="card shadow text-center py-4">
-                                <p>Profile Image</p>
+                            <img src={ require("../../assets/admin.svg")} className="rounded-circle" height="40px" alt="admin" />
                                 <div className="card-body">
                                     <h5 className="card-title mb-0">{patient.full_name}</h5>
                                     <p className="text-muted small">{patient.adress}</p>
