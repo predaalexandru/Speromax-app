@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import { useFirestore, useFirestoreConnect } from "react-redux-firebase";
 import { useSelector } from "react-redux";
 import Loading from "../layout/Loading";
+import Input from '../layout/Input';
+// import SearchField from 'react-search-field';
 
 
 /**
@@ -11,6 +13,7 @@ import Loading from "../layout/Loading";
 **/
 
 const Patients = () => {
+
   const firestore = useFirestore();
   const patients = useSelector((state) => state.firestore.ordered.patients);
 
@@ -33,6 +36,16 @@ const Patients = () => {
 
   return(
     <div className="container">
+
+<div className="py-4">
+  <div className="row">
+  {/* <SearchField placeholder='Search Patient' onChange={patients.full_name} /> */}
+      <Input placeholder="Search Patient" name="search_patient"
+                  // value={props.inputValue}
+                  // onChange={props.searchPatient}
+                  />  
+  </div>
+</div>
         <div className="py-4">
             <div className="row">
                 {

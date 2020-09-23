@@ -12,11 +12,15 @@ const Navbar = () => {
   return(
     <nav className="navbar navbar-expand-sm navbar-light bg-white">
   <div className="container">
-    <a className="navbar-brand" href="/">
-      <img src={require("../../assets/sigla.svg")} height="50px" alt="Logo"/>
-    </a>
+      <Link className="navbar-brand" to="/">
+        <img src={require("../../assets/sigla.svg")} height="50px" alt="Logo"/>
+      </Link>
 
-    <div>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="dropdownContent">
+          <span className="navbar-toggler-icon"></span>
+      </button>
+
+    <div className="collapse navbar-collapse" id="dropdownContent">
       <ul className="navbar-nav mr-auto"></ul>
       <ul className="navbar-nav align-items-center">
         <li className="nav-item">
@@ -40,10 +44,6 @@ const Navbar = () => {
             </a>
             <a className="dropdown-item" href="#" onClick={() => firebase.logout()}>
               Logout
-            </a>
-            <div className="dropdown-divider"></div>
-            <a className="dropdown-item" href="#">
-              Ads
             </a>
           </div>
         </li>
